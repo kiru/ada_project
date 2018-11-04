@@ -6,7 +6,6 @@ UFOs have been around for a while, or haven't they? Our project aims to deeper a
 
 Therefore we need to make use of multiple datasets. For the base we are using a collection of UFO sightings from THE NATIONAL UFO REPORTING CENTER which contains data from 1974 to the latest report. To calculate possible misconceptions we target to use astronomical data. Furthermore we use Twitterdata to connect UFO sightings to the same timestamp in twitter.
 
-sentence on our motivation: 
 
 # Research questions
 1. Can there be found a relation between mental health, beliefs of reported location averages to the sightings?
