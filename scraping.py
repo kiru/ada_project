@@ -79,7 +79,7 @@ def do_one_process(each_url):
         dict_data_single_report["url"] = sighting_url
         return dict_data_single_report
     except:
-        print("An exception occurred: ", sighting_url)
+        print("Could not fetch ", sighting_url)
         return {"url": sighting_url}
 
 
