@@ -9,6 +9,7 @@ from tqdm import tqdm_notebook
 from datetime import datetime
 
 def get_time_of_occurrence(data):
+    data = data.sample(1000)
     """
     Takes the input of the whole dataframe
     Return:
@@ -20,7 +21,7 @@ def get_time_of_occurrence(data):
     df_time_occur_report = occur_report.assign(Occurred=occur_report.Occurred.str.split('(',n=1).str[0])
     #Create new column for years
     df_time_occur_report['year'] = np.nan
-    df_time_occur_report.Occurred = df_time_occur_repor`t.Occurred.str.strip()
+    df_time_occur_report.Occurred = df_time_occur_report.Occurred.str.strip()
     converted_time = to_datetime_add_year(df_time_occur_report.Occurred)
     df_time_occur_report.Occurred = converted_time
     #Assigns years of occurance to the column
