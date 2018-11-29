@@ -51,8 +51,8 @@ return single report as dictionary
     Duration
     > Summary
 '''
-def getSingleReport(ufo_sightings):
-    dd = {}
+def get_single_report(ufo_sightings):
+    d = {}
     td_list=ufo_sightings.findAll("td")
 
     # first td
@@ -60,14 +60,14 @@ def getSingleReport(ufo_sightings):
     for item in row_:            
         splitvals = item.split(':', 1)
         if len(splitvals) == 2:
-            dd[splitvals[0]] = splitvals[1]
+            d[splitvals[0]] = splitvals[1]
     
-    # second td      
-    row_ = str(td_list[1].findAll(text=True))
-    dd["Summary"] = row_
-    return dd
+    # second td
+    row_ = td_list[1].text
+    d["Summary"] = row_
+    return d
 
-def do_one_process(each_url):
+def request_one_report(each_url):
     #progress.update(1)
     #pbar.update(1)
     sighting_url = url + each_url
@@ -75,7 +75,7 @@ def do_one_process(each_url):
     soup = BeautifulSoup(r.text, 'html.parser')
     ufo_report = soup.find('tbody')
     try:
-        dict_data_single_report = getSingleReport(ufo_report)
+        dict_data_single_report = get_single_report(ufo_report)
         dict_data_single_report["url"] = sighting_url
         return dict_data_single_report
     except:
@@ -89,8 +89,8 @@ def build_report_dataframe(random_urls):
     df_reports_ = pd.DataFrame()
     
     with Pool(500) as pool:
-        #result = pool.imap(do_one_process, random_urls)
-        for each in tqdm_notebook(pool.imap(do_one_process, random_urls), total=len(random_urls)):
+        #result = pool.imap(request_one_report, random_urls)
+        for each in tqdm_notebook(pool.imap(request_one_report, random_urls), total=len(random_urls)):
             df_reports_ = df_reports_.append(each, ignore_index=True)
             #print(each)
         #print(result)
