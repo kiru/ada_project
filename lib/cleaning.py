@@ -2,37 +2,46 @@ import pandas as pd
 import re
 import numpy as np
 
-regex = r"\(\(NUFORC Note.[^\)]*\)\)"
+#regex_cut_nuforc = r"\(\(NUFORC Note.[^\)]*\)\)"
+#regex_cut_url = r"(https|http|www)(:\/\/|)([^\s]*)"
+
 
 # return summary without any nuforc notes
 def delete_Nuforc_from_sum(summary, nuforc_note):
     l = list(nuforc_note)
     for i in range(0,len(l)):
-        summary = summary.replace(l[i], '<><')
+        summary = summary.replace(l[i], '')
     return summary
 
-# extract nuforc notes
-def single_extract(summary):
-    matches = re.finditer(regex, summary, re.MULTILINE)    
+# extract any regex
+def single_extract(summary, regex_extract):
+    matches = re.finditer(regex_extract, summary, re.MULTILINE)    
     data=[]
     for matchNum, match in enumerate(matches):
         data.append(match.group())
     return data
-        
-# split nuforc notes into seperate column
-def split_nuforc_notes_from_summary(df):    
+
+# split and delete any regex from summary into new column new_feature
+def split_regex_from_summary(df, regex_cut_url, new_feature):    
     # filter reports that have a summary
     filter_nan_summary = pd.isnull(df["Summary"])
     df = df[~filter_nan_summary]
-    
-    # filter reports that have any ((NUFORC)) content in summary
-    #filter_has_NUFORC_note = df["Summary"].str.contains(regex)
-    #df = df[filter_has_NUFORC_note]
 
     # split and remove 
-    df["nuforc_note"] = df.apply(lambda x: single_extract(x.Summary), axis = 1)
-    df["Summary"] = df.apply(lambda x: delete_Nuforc_from_sum(x.Summary, x.nuforc_note), axis = 1)    
+    df[new_feature] = df.apply(lambda x: single_extract(x.Summary, regex_cut_url), axis = 1)
+    df["Summary"] = df.apply(lambda x: delete_Nuforc_from_sum(x.Summary, x[new_feature]), axis = 1)    
     return df
+
+# main split
+def split_summary(df):
+    regex_cut_nuforc = r"\(\(NUFORC Note.[^\)]*\)\)"
+    regex_cut_url = r"(https|http|www)(:\/\/|)([^\s]*)"
+    
+    df_new = split_regex_from_summary(df, regex_cut_nuforc, "nuforc_note")
+    df_new = split_regex_from_summary(df_new, regex_cut_url, "link")
+    return df_new
+    
+
 
 # post process after scraping - run only once after import
 def post_process(df_ufo_reports):
