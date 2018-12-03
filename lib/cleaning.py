@@ -82,6 +82,13 @@ def post_process(df_ufo_reports):
     print("done")
     return df_ufo_reports
 
+# return df without and with madar reports
+def seperate_madar_reports(df):
+    filter_madar = df["Summary"].str.contains("MADAR Node")
+    madar_reports = df[filter_madar]
+    clean_reports = df[~filter_madar]
+    return clean_reports, madar_reports
+
 import folium
 import matplotlib.pyplot as plt
 
