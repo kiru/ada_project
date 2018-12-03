@@ -3,7 +3,7 @@ import re
 import numpy as np
 
 #regex_cut_nuforc = r"\(\(NUFORC Note.[^\)]*\)\)"
-#regex_cut_url = r"(https|http|www)(:\/\/|)([^\s]*)"
+#regex_cut_url = r"(https|http|www)(:\/\/|)([^\s )(]*)"
 
 
 # return summary without any nuforc notes
@@ -35,7 +35,7 @@ def split_regex_from_summary(df, regex_cut_url, new_feature):
 # main split
 def split_summary(df):
     regex_cut_nuforc = r"\(\(NUFORC Note.[^\)]*\)\)"
-    regex_cut_url = r"(https|http|www)(:\/\/|)([^\s]*)"
+    regex_cut_url = r"(https|http|www)(:\/\/|)([^\s )(]*)"
     
     df_new = split_regex_from_summary(df, regex_cut_nuforc, "nuforc_note")
     df_new = split_regex_from_summary(df_new, regex_cut_url, "link")
