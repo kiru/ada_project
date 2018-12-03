@@ -1,6 +1,8 @@
 import pandas as pd
 import re
 import numpy as np
+import folium
+import matplotlib.pyplot as plt
 
 regex = r"\(\(NUFORC Note.[^\)]*\)\)"
 
@@ -45,22 +47,24 @@ def post_process(df_ufo_reports):
 
     # Split Location into Location and State
     print("splitting Location..")
-    df_ufo_reports[['Location', 'State']] = df_ufo_reports['Location'].str.split(',', n=1, expand=True)
-    
+    df_splitted_locaiton = df_ufo_reports['Location'].str.split(',', n=1)
+    df_ufo_reports['Location'] = df_splitted_locaiton.str[0]
+    df_ufo_reports['State'] = df_splitted_locaiton.str[1]
+
     # clear unwanted characters
     print("cleaning Location..")
-    df_ufo_reports['Location'] = df_ufo_reports['Location'].apply(lambda x: x.strip()) # 333ys
+    df_ufo_reports['Location'] = df_ufo_reports['Location'].astype(str).apply(lambda x: x.strip())
     
     print("cleaning State..")
     filter_nan_states = pd.isnull(df_ufo_reports["State"])
     df_ufo_reports = df_ufo_reports[~filter_nan_states]
-    df_ufo_reports['State'] = df_ufo_reports['State'].apply(lambda x: x.strip()) # 333ys
+    df_ufo_reports['State'] = df_ufo_reports['State'].apply(lambda x: x.strip())
     
     print("cleaning Reported")
-    df_ufo_reports['Reported'] = df_ufo_reports['Reported'].apply(lambda x: x.strip()) # 333ys
+    df_ufo_reports['Reported'] = df_ufo_reports['Reported'].apply(lambda x: x.strip())
     
     print("cleaning Posted..")    
-    df_ufo_reports['Posted'] = df_ufo_reports['Posted'].apply(lambda x: x.strip()) # 333ys
+    df_ufo_reports['Posted'] = df_ufo_reports['Posted'].apply(lambda x: x.strip())
     
     # clear unwanted characters 
     #print("cleaning Summary..")
@@ -73,8 +77,6 @@ def post_process(df_ufo_reports):
     print("done")
     return df_ufo_reports
 
-import folium
-import matplotlib.pyplot as plt
 
 def sightings_per_state_unnormalized(df_sight_per_state):
     # prepare data for Sightings per State plot
