@@ -9,7 +9,6 @@ from tqdm import tqdm_notebook
 from datetime import datetime
 
 def get_time_of_occurrence(data):
-    data = data.sample(1000)
     """
     Takes the input of the whole dataframe
     Return:
