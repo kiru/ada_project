@@ -1,5 +1,8 @@
 # UFO believer or not
 
+# Todo
+[TODO](https://hackmd.io/fh6mbplVRxO6HHDyvaqQDw?edit)
+
 # Abstract
 
 Our project aims to deeper analyze data on UFO sightings and see if the 'official' reports of the sightings can be believable by doing text analysis. Based on the given event-descriptions, we would like to perform a sentiment analysis to classify weather the observer had positive, neutral or negative emotions/experience. 
