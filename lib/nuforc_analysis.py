@@ -14,7 +14,7 @@ def get_noforc_note_count_distribution(df, feature):
 
 def plot_distribution_of_notes(df, feature):
     dist = get_noforc_note_count_distribution(df, feature)
-    plt.figure(figsize=((15,10)))
+    plt.figure(figsize=((5,5)))
     ax = plt.subplot()
     ax.set_yscale("log")
     plt.title("Distribution of count of "+feature)
