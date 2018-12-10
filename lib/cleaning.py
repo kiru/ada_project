@@ -232,6 +232,43 @@ def clean_duration_get_min(df):
     
     return duration
 
+def get_time_of_occurrence(data):
+    """
+    Takes the input of the whole dataframe
+    Return:
+       - Time and date of occurrance and report
+       - Year of occurrance
+    """
+    occur_report = data[['Occurred', 'Reported']].copy()
+    df_time_occur_report = occur_report.assign(Occurred=occur_report.Occurred.str.split('(',n=1).str[0])
+    df_time_occur_report.Reported = pd.DataFrame(pd.to_datetime(occur_report.Reported))
+    #Create new column for years
+    #df_time_occur_report['year'] = np.nan
+    df_time_occur_report.Occurred = df_time_occur_report.Occurred.str.strip()
+    converted_time = to_datetime_add_year(df_time_occur_report.Occurred)
+    df_time_occur_report.Occurred = converted_time
+    #Assigns years of occurance to the column
+    #for i in range(len(df_time_occur_report.Occurred)):
+     #   df_time_occur_report.year[i] = df_time_occur_report.Occurred[i].year
+    data.Occurred = df_time_occur_report.Occurred
+    data.Reported = df_time_occur_report.Reported
+    return data
+
+def to_datetime_add_year(date):
+    """
+    Changes the date format of the dataframe
+    Returns:
+       - Updated time formats
+    """
+    converted = pd.DataFrame(pd.to_datetime(date,format='%m/%d/%Y %H:%M',
+                   errors = 'coerce', exact=True))
+    converted_2 = pd.DataFrame(pd.to_datetime(date,format='%m/%d/%Y',
+                   errors = 'coerce', exact=True))
+    values = converted_2[~converted_2.Occurred.isnull()]
+    converted.update(values)
+
+    return converted
+
 # call all cleaning functions from here
 def clean_data(df):
     #A
@@ -240,6 +277,8 @@ def clean_data(df):
     df_clean = split_summary(df_clean)
     #C
     df_clean, df_madar_reports = seperate_madar_reports(df_clean)
+    
+    df_clean = get_time_of_occurrence(df_clean)
     # ADD TIME HERE ONE
     return df_clean, df_madar_reports
     
