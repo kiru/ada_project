@@ -86,7 +86,6 @@ def post_process(df_ufo_reports):
     print("done")
     return df_ufo_reports
 
-<<<<<<< HEAD
 # return df without and with madar reports
 def seperate_madar_reports(df):
     filter_madar = df["Summary"].str.contains("MADAR Node")
@@ -96,8 +95,6 @@ def seperate_madar_reports(df):
 
 import folium
 import matplotlib.pyplot as plt
-=======
->>>>>>> f3b63fc8e28a0bb5b06a2fe1b87aac3d93845c20
 
 def sightings_per_state_unnormalized(df_sight_per_state):
     # prepare data for Sightings per State plot
