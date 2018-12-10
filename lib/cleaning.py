@@ -112,7 +112,7 @@ def clean_duration_get_min(df):
     hr_time = hr_time.dropna()
     hr_time.Duration = 60
     hr_time.time_format = 'min'
-    hrs_time = dummy_time.copy()
+    hrs_time = df_dummy.copy()
     hrs_time.Duration = hrs_time.Duration[hrs_time.Duration.str.contains('hrs')]
     hrs_time = hrs_time.dropna()
     hrs_time.Duration = hrs_time.Duration.str.replace('[:-]', '.')
@@ -131,7 +131,7 @@ def clean_duration_get_min(df):
     hrs_time.Duration = hrs_time.Duration.astype(float)
     hrs_time.Duration = hrs_time.Duration*60
     hrs_time.time_format = 'min'
-    hour_time = dummy_time.copy()
+    hour_time = df_dummy.copy()
     hour_time.Duration = hour_time.Duration[hour_time.Duration.str.contains('hour')]
     hour_time = hour_time.dropna()
     hour_time.Duration = hour_time.Duration.str.replace('[:-]', '.')
@@ -152,7 +152,7 @@ def clean_duration_get_min(df):
     hour_time.Duration = hour_time.Duration.astype(float)
     hour_time.Duration = hour_time.Duration*60
     hour_time.time_format = 'min'
-    minutes_time = dummy_time.copy()
+    minutes_time = df_dummy.copy()
     minutes_time.Duration = minutes_time.Duration.dropna()[minutes_time.Duration.dropna().str.contains('min')]
     minutes_time.time_format = 'min'
     minutes_time = minutes_time.dropna()
@@ -189,7 +189,7 @@ def clean_duration_get_min(df):
     minutes_time = minutes_time.dropna()
     minutes_time.Duration = minutes_time.Duration.astype(float)
 
-    sec_time = dummy_time.copy()
+    sec_time = df_dummy.copy()
     sec_time.Duration = sec_time.Duration.dropna()[sec_time.Duration.dropna().str.contains('sec')]
     sec_time.time_format = 'sec'
     sec_time = sec_time.dropna()
