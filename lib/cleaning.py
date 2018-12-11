@@ -227,10 +227,12 @@ def clean_duration_get_min(df):
     sec_time.time_format = 'min'
 
     duration_list = [sec_time, minutes_time, hr_time, hrs_time, hour_time]
-    duration = pd.concat(duration_list).sort_index()
-    duration = duration.Duration
+    df_new = df.copy()
+    df_new.Duration = np.nan
+    for i in duration_list:
+        df_new.Duration.update(i.Duration)
     
-    return duration
+    return df_new
 
 def get_time_of_occurrence(data):
     """
@@ -277,8 +279,12 @@ def clean_data(df):
     df_clean = split_summary(df_clean)
     #C
     df_clean, df_madar_reports = seperate_madar_reports(df_clean)
-    
+    #D
     df_clean = get_time_of_occurrence(df_clean)
-    # ADD TIME HERE ONE
+    #E
+    df_clean = clean_duration_get_min(df_clean)
+    #Set url as index, as it is the identifier of the report
+    df_clean = df_clean.set_index('url')
+    
     return df_clean, df_madar_reports
     
