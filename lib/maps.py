@@ -5,6 +5,10 @@ import pandas as pd
 data_folder = './geo_data/'
 my_USA_map = data_folder + r'us-states.json'
 
+population_folder = './data/
+df_population = pd.read_excel(population_folder + 'PctUrbanRural_State.xls')
+df_population_all = pd.read_excel(population_folder+ 'PctUrbanRural_County.xls')
+
 ############################## UFO Reports by State ##############################
 
 def sightings_per_state(df):
@@ -24,6 +28,61 @@ def sightings_per_state(df):
     return us_map
 
 ############################## UFO Reports per Capita¶ ##############################
+
+# dictionary on US states full names to abbreviations
+
+us_state_abbrev = {
+    'Alabama': 'AL',
+    'Alaska': 'AK',
+    'Arizona': 'AZ',
+    'Arkansas': 'AR',
+    'California': 'CA',
+    'Colorado': 'CO',
+    'Connecticut': 'CT',
+    'Delaware': 'DE',
+    'Florida': 'FL',
+    'Georgia': 'GA',
+    'Hawaii': 'HI',
+    'Idaho': 'ID',
+    'Illinois': 'IL',
+    'Indiana': 'IN',
+    'Iowa': 'IA',
+    'Kansas': 'KS',
+    'Kentucky': 'KY',
+    'Louisiana': 'LA',
+    'Maine': 'ME',
+    'Maryland': 'MD',
+    'Massachusetts': 'MA',
+    'Michigan': 'MI',
+    'Minnesota': 'MN',
+    'Mississippi': 'MS',
+    'Missouri': 'MO',
+    'Montana': 'MT',
+    'Nebraska': 'NE',
+    'Nevada': 'NV',
+    'New Hampshire': 'NH',
+    'New Jersey': 'NJ',
+    'New Mexico': 'NM',
+    'New York': 'NY',
+    'North Carolina': 'NC',
+    'North Dakota': 'ND',
+    'Ohio': 'OH',
+    'Oklahoma': 'OK',
+    'Oregon': 'OR',
+    'Pennsylvania': 'PA',
+    'Rhode Island': 'RI',
+    'South Carolina': 'SC',
+    'South Dakota': 'SD',
+    'Tennessee': 'TN',
+    'Texas': 'TX',
+    'Utah': 'UT',
+    'Vermont': 'VT',
+    'Virginia': 'VA',
+    'Washington': 'WA',
+    'West Virginia': 'WV',
+    'Wisconsin': 'WI',
+    'Wyoming': 'WY',
+}
 
 # states and their population
 states_population = {'AK': 2915958,
@@ -85,6 +144,28 @@ states_population = {'AK': 2915958,
 
 # contains state id's
 states_keys = list(states_population.keys())
+
+# Getting data on wether an area is urban or not
+
+def get_us_population_data(df, dict, density_amount = 30):
+    """
+    Takes an input of US census data on US counties, their land areas and populations
+    :density_amount: Our filter at which we say whether a county is 'urban' or 'rural'
+                    We use 30 as default, as that returns 80% population worth of counties
+                    as urban, which is inline with US census data, see:
+                    https://www.census.gov/geo/reference/ua/urban-rural-2010.html
+    returns:
+        - DataFrame with calculated density and a boolean index to whether the county is 
+        urban or not (True => Urban)
+    """
+    df_density = df[['STATENAME','COUNTYNAME', 'POP_COU','AREA_COU']].copy()
+    df_density = df_density.drop(df_density[df_density.STATENAME == 'Puerto Rico'].index)
+    df_density.AREA_COU = df_density.AREA_COU/(1000000)
+    df_density['density'] = df_density.POP_COU/df_density.AREA_COU
+    df_density['urban'] = False
+    df_density.urban[(df_density.density > density_amount)] = True
+    df_density.replace({'STATENAME': dict})
+    return df_density
 
 # rm commas
 def replace_commas_in_dict():
