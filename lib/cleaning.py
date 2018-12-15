@@ -123,8 +123,20 @@ def clean_duration_get_min(df):
     hrs_time.Duration = hrs_time.Duration.str.replace(r"[^0-9]*(?P<one>[0-9][0-9 \.]*)[\w\. ]*", repl, regex=True)
     hrs_time.Duration = hrs_time.Duration.str.replace('[+a-z ]', '')
     hrs_time.time_format = 'hour'
-    manual_drop_hrs = [111938, 97125, 92361, 87440, 110228, 45333, 80653, 58194, 55810, 
-                       54939, 110807, 54694, 30841, 57254]
+    manual_drop_hrs = ['http://www.nuforc.org/webreports/037/S37912.html',
+                     'http://www.nuforc.org/webreports/042/S42092.html',
+                     'http://www.nuforc.org/webreports/076/S76011.html',
+                     'http://www.nuforc.org/webreports/033/S33261.html',
+                     'http://www.nuforc.org/webreports/072/S72551.html',
+                     'http://www.nuforc.org/webreports/061/S61549.html',
+                     'http://www.nuforc.org/webreports/065/S65031.html',
+                     'http://www.nuforc.org/webreports/022/S22298.html',
+                     'http://www.nuforc.org/webreports/050/S50657.html',
+                     'http://www.nuforc.org/webreports/010/S10179.html',
+                     'http://www.nuforc.org/webreports/062/S62927.html',
+                     'http://www.nuforc.org/webreports/012/S12945.html',
+                     'http://www.nuforc.org/webreports/036/S36055.html',
+                     'http://www.nuforc.org/webreports/066/S66982.html']
     hrs_time = hrs_time.drop(manual_drop_hrs)
     hrs_time.Duration = hrs_time.Duration[~(hrs_time.Duration == '')]
     hrs_time = hrs_time.dropna()
@@ -141,9 +153,29 @@ def clean_duration_get_min(df):
     hour_time.Duration = hour_time.Duration.str.replace(r"[^0-9]*(?P<one>[0-9][0-9 \.]*)[\w\. ]*", repl, regex=True)
     hour_time.Duration = hour_time.Duration.str.replace('[+a-z ?\(\)&"`,!>;]', '')
     hour_time.Duration = hour_time.Duration.str.replace('([.]{2,})', '')
-    manual_drop_hours = [109182, 102324, 96844, 93487, 93353, 80915, 88291, 78633,
-                         63452, 66319, 67243, 44816, 22126, 30095, 68130, 91121, 
-                        80095, 71731, 61714, 38278, 24674, 107114, 111918]
+    manual_drop_hours = ['http://www.nuforc.org/webreports/088/S88735.html',
+                         'http://www.nuforc.org/webreports/018/S18201.html',
+                         'http://www.nuforc.org/webreports/097/S97245.html',
+                         'http://www.nuforc.org/webreports/056/S56730.html',
+                         'http://www.nuforc.org/webreports/060/S60705.html',
+                         'http://www.nuforc.org/webreports/048/S48076.html',
+                         'http://www.nuforc.org/webreports/141/S141670.html',
+                         'http://www.nuforc.org/webreports/057/S57375.html',
+                         'http://www.nuforc.org/webreports/135/S135194.html',
+                         'http://www.nuforc.org/webreports/120/S120662.html',
+                         'http://www.nuforc.org/webreports/115/S115856.html',
+                         'http://www.nuforc.org/webreports/012/S12616.html',
+                         'http://www.nuforc.org/webreports/110/S110151.html',
+                         'http://www.nuforc.org/webreports/022/S22991.html',
+                         'http://www.nuforc.org/webreports/054/S54560.html',
+                         'http://www.nuforc.org/webreports/097/S97312.html',
+                         'http://www.nuforc.org/webreports/048/S48532.html',
+                         'http://www.nuforc.org/webreports/091/S91948.html',
+                         'http://www.nuforc.org/webreports/012/S12984.html',
+                         'http://www.nuforc.org/webreports/093/S93679.html',
+                         'http://www.nuforc.org/webreports/087/S87149.html',
+                         'http://www.nuforc.org/webreports/118/S118397.html',
+                         'http://www.nuforc.org/webreports/038/S38295.html']
     hour_time = hour_time.drop(manual_drop_hours)
     hour_time.Duration = hour_time.Duration.str.replace('\.$', '')
     hour_time.time_format = 'hour'
@@ -165,13 +197,63 @@ def clean_duration_get_min(df):
     minutes_time['Duration'] = minutes_time.Duration.str.replace('[+a-z ?±*\(\)½!<>\\\\=~&"á`,\'!>;\[\]@]', '')
     minutes_time['Duration'] = minutes_time.Duration.str.replace('([.]{2,})', '')
     minutes_time['Duration'] = minutes_time.Duration.str.replace('([-]{2,})', '')
-    minutes_manual_drop = [2708, 7632, 17491, 26323, 17743, 19051, 21642, 25011,
-                           27849, 28293, 35538, 39992, 75636, 78172, 82754, 93849,
-                           95787, 4126, 24350, 95915, 102106, 4627, 85033, 85683, 
-                           14141, 16443, 69234, 77029, 101165, 42895, 19145, 56129, 
-                          75795, 115300, 113583, 112874, 105620, 88135, 87478, 75795, 
-                          60077, 55454, 78279, 113942, 43457, 4597, 6962, 9217, 19169, 
-                           32546, 41128, 61391, 63575, 82235, 101547, 32357, 89937]
+    minutes_manual_drop = ['http://www.nuforc.org/webreports/080/S80130.html',
+                         'http://www.nuforc.org/webreports/073/S73172.html',
+                         'http://www.nuforc.org/webreports/023/S23713.html',
+                         'http://www.nuforc.org/webreports/070/S70151.html',
+                         'http://www.nuforc.org/webreports/018/S18491.html',
+                         'http://www.nuforc.org/webreports/031/S31053.html',
+                         'http://www.nuforc.org/webreports/060/S60680.html',
+                         'http://www.nuforc.org/webreports/083/S83903.html',
+                         'http://www.nuforc.org/webreports/054/S54298.html',
+                         'http://www.nuforc.org/webreports/044/S44039.html',
+                         'http://www.nuforc.org/webreports/089/S89149.html',
+                         'http://www.nuforc.org/webreports/054/S54639.html',
+                         'http://www.nuforc.org/webreports/082/S82708.html',
+                         'http://www.nuforc.org/webreports/059/S59548.html',
+                         'http://www.nuforc.org/webreports/031/S31802.html',
+                         'http://www.nuforc.org/webreports/050/S50243.html',
+                         'http://www.nuforc.org/webreports/016/S16608.html',
+                         'http://www.nuforc.org/webreports/013/S13359.html',
+                         'http://www.nuforc.org/webreports/090/S90305.html',
+                         'http://www.nuforc.org/webreports/014/S14114.html',
+                         'http://www.nuforc.org/webreports/024/S24510.html',
+                         'http://www.nuforc.org/webreports/057/S57832.html',
+                         'http://www.nuforc.org/webreports/015/S15793.html',
+                         'http://www.nuforc.org/webreports/011/S11759.html',
+                         'http://www.nuforc.org/webreports/076/S76397.html',
+                         'http://www.nuforc.org/webreports/041/S41866.html',
+                         'http://www.nuforc.org/webreports/105/S105580.html',
+                         'http://www.nuforc.org/webreports/066/S66294.html',
+                         'http://www.nuforc.org/webreports/053/S53766.html',
+                         'http://www.nuforc.org/webreports/019/S19738.html',
+                         'http://www.nuforc.org/webreports/045/S45620.html',
+                         'http://www.nuforc.org/webreports/130/S130501.html',
+                         'http://www.nuforc.org/webreports/072/S72304.html',
+                         'http://www.nuforc.org/webreports/057/S57446.html',
+                         'http://www.nuforc.org/webreports/022/S22733.html',
+                         'http://www.nuforc.org/webreports/045/S45509.html',
+                         'http://www.nuforc.org/webreports/062/S62216.html',
+                         'http://www.nuforc.org/webreports/028/S28595.html',
+                         'http://www.nuforc.org/webreports/027/S27460.html',
+                         'http://www.nuforc.org/webreports/072/S72304.html',
+                         'http://www.nuforc.org/webreports/081/S81635.html',
+                         'http://www.nuforc.org/webreports/004/S04573.html',
+                         'http://www.nuforc.org/webreports/066/S66749.html',
+                         'http://www.nuforc.org/webreports/008/S08175.html',
+                         'http://www.nuforc.org/webreports/079/S79435.html',
+                         'http://www.nuforc.org/webreports/058/S58282.html',
+                         'http://www.nuforc.org/webreports/035/S35391.html',
+                         'http://www.nuforc.org/webreports/042/S42286.html',
+                         'http://www.nuforc.org/webreports/071/S71132.html',
+                         'http://www.nuforc.org/webreports/092/S92296.html',
+                         'http://www.nuforc.org/webreports/031/S31348.html',
+                         'http://www.nuforc.org/webreports/026/S26836.html',
+                         'http://www.nuforc.org/webreports/072/S72646.html',
+                         'http://www.nuforc.org/webreports/036/S36677.html',
+                         'http://www.nuforc.org/webreports/046/S46047.html',
+                         'http://www.nuforc.org/webreports/025/S25954.html',
+                         'http://www.nuforc.org/webreports/121/S121769.html']
     minutes_time = minutes_time.drop(minutes_manual_drop)
     minutes_time['Duration'] = minutes_time.Duration.str.replace('\-$', '')
     minutes_time.Duration = minutes_time.Duration.str.replace('\.$', '')
@@ -204,7 +286,9 @@ def clean_duration_get_min(df):
     sec_time['Duration'] = sec_time.Duration.str.replace('([.]{2,})', '')
     sec_time['Duration'] = sec_time.Duration.str.replace('([-]{2,})', '')
     sec_time['Duration'] = sec_time.Duration.str.replace('\-$', '')
-    sec_manual_drop = [17067, 42074, 21247]
+    sec_manual_drop = ['http://www.nuforc.org/webreports/031/S31258.html',
+                     'http://www.nuforc.org/webreports/012/S12816.html',
+                     'http://www.nuforc.org/webreports/116/S116380.html']
     sec_time = sec_time.drop(sec_manual_drop)
     sec_time.Duration = sec_time.Duration.str.replace('\.$', '')
     sec_time.Duration = sec_time.Duration.str.replace('\.-$', '')
@@ -281,10 +365,11 @@ def clean_data(df):
     df_clean, df_madar_reports = seperate_madar_reports(df_clean)
     #D
     df_clean = get_time_of_occurrence(df_clean)
-    #E
-    df_clean = clean_duration_get_min(df_clean)
     #Set url as index, as it is the identifier of the report
     df_clean = df_clean.set_index('url')
+    #F
+    df_clean = clean_duration_get_min(df_clean)
+
     
     return df_clean, df_madar_reports
     
