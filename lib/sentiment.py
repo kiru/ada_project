@@ -25,4 +25,3 @@ def add_sentiment_data(df_reports, sentiment_file='sentiment.csv'):
     df_merged_report = df_merged_report.set_index('url')
     return df_merged_report
 
-df_report_sentiment = add_sentiment_data(df_reports)
