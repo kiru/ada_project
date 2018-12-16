@@ -23,7 +23,7 @@ nltk.download('stopwords')
 tokenizer = RegexpTokenizer(r'\w+')
 
 # Global variable for color of the plots
-color_global = '#0c89a0'
+color_global = '#751947'
 
 url_UFO = 'http://clipart.printcolorcraft.com/wp-content/uploads/ufo/cliparti1%20ufo%20clipart%2005.jpg'
 url_fireball = 'https://i.imgur.com/tovze5p.jpg'
