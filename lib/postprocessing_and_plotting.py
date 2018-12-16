@@ -13,6 +13,9 @@ from datetime import datetime
 from PIL import Image
 import urllib
 import requests
+from wordcloud import WordCloud
+import pickle
+from ipywidgets import interactive, IntSlider
 
 
 
@@ -53,7 +56,7 @@ def peaks_over_months(df):
     df_peaks['year_month'] = df_peaks.Occurred.map(lambda x: x.strftime('%m'))
     plotting_times = df_peaks.groupby(by='year_month').count()
 
-    fig, ax = subplots(figsize=(16,6))
+    fig, ax = plt.subplots(figsize=(16,6))
     plt.bar(plotting_times.index, plotting_times.Occurred, color=color_global)
     plt.legend(['Intensity of occurance'], fontsize=16)
     plt.xlabel('Month', fontsize=18)
@@ -69,7 +72,7 @@ def get_plot_july(df):
     df_july['days'] = df_july.Occurred.map(lambda x: x.strftime('%d'))
     july_plotting_times = df_july.groupby(by='days').count()
 
-    fig, ax = subplots(figsize=(16,6))
+    fig, ax = plt.subplots(figsize=(16,6))
     plt.bar(july_plotting_times.index, july_plotting_times.Occurred, color=color_global)
     plt.legend(['Intensity of occurance in July'], fontsize=16)
     plt.xlabel('Day', fontsize=18)
@@ -97,7 +100,7 @@ def get_data_for_months(df):
 
 def plot_for_each_month(months):
     
-    figs, axis = subplots(nrows=6,ncols=2,figsize=(16,14))
+    figs, axis = plt.subplots(nrows=6,ncols=2,figsize=(16,14))
     
     month = 0
     for row in range(6):
@@ -110,11 +113,11 @@ def plot_for_each_month(months):
     plt.show()
 
     
-def spike_finder(year, month):
+def spike_finder(year, month, df):
     """
     :returns: interactive plot to view the occurrance of reports over a year/month period
     """
-    df_spike = df_reports[['Occurred']].copy()
+    df_spike = df[['Occurred']].copy()
     df_spike = df_spike[(df_spike.Occurred.dt.year == year)]
     df_spike = df_spike[(df_spike.Occurred.dt.month == month)]
     #df_spike = df_spike[(df_spike.Occurred.dt.day == day)]
@@ -123,14 +126,11 @@ def spike_finder(year, month):
     df_spike['day'] = df_spike.Occurred.map(lambda x: x.strftime('%d'))
     plotting = df_spike.groupby(by='day').count()
     fig, ax = plt.subplots(figsize=(15, 6))
-    plt.bar(plotting.index, plotting.Occurred, )
-    plt.legend(['Intensity of occurance in {}'.format(df_spike.Occurred.iloc[1].strftime('%B'))])
-    plt.xlabel("Day in {}".format(df_spike.Occurred.iloc[1].strftime('%B')))
-    plt.ylabel('Occurrance')
+    plt.bar(plotting.index, plotting.Occurred, color = color_global)
+    plt.legend(['Intensity of occurance in {}'.format(df_spike.Occurred.iloc[1].strftime('%B'))], fontsize = 16)
+    plt.xlabel("Day in {}".format(df_spike.Occurred.iloc[1].strftime('%B')), fontsize = 18)
+    plt.ylabel('Occurrance', fontsize=18)
     plt.show()
-    interactive_plot = interactive(spike_finder, year = IntSlider(min=2004,max=2007,step=1,value=2004),
-                                              month = IntSlider(min=1,max=12,step=1,value=1))
-    return interactive_plot
 
 def occurance_report_difference(df):
     """
@@ -225,7 +225,7 @@ def paralelize_word_frequency(df_reports):
         year_to_word_freq = {}
         print("start")
         for year, freq in tqdm_notebook(p.imap(to_frec, summary_list)):
-    year_to_word_freq[year] = freq
+            year_to_word_freq[year] = freq
     return year_to_word_freq
 
 def drop_most_popular_words(frequency_years):
