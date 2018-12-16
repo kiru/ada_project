@@ -28,7 +28,7 @@ def export_alll_files(df_reports, output = 'tmp/'):
         url = each[0]
         summary = each[1]
         # repalce slash with - because FS doesn't like it.
-        sentiment.write_to_file(output + url.replace('/', '-') + ".txt", summary)
+        write_to_file(output + url.replace('/', '-') + ".txt", summary)
 
 
 def add_sentiment_data(df_reports, sentiment_file='sentiment.csv'):
