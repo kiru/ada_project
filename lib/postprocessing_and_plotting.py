@@ -308,5 +308,3 @@ def show_wordcloud(year):
     plt.axis("off")
     plt.imshow(wc, interpolation="bilinear")
     plt.show()
-    interactive_plot = interactive(generate_clipart, year = IntSlider(min=1964,max=2018,step=1,value=2000))
-    return interactive_plot
