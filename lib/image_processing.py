@@ -9,7 +9,6 @@ import pandas as pd
 
 
 img_path = "img/yt/"
-img_list = os.listdir(img_path)
 
 # calculate the dominant color of a picture using K-Means
 def dominantColors(img_path, clusters):
@@ -61,6 +60,7 @@ def lum (r,g,b):
 
 # returns df of images and
 def plot_sorted_images():
+    img_list = os.listdir(img_path)
 
     # load images from os
     images = [Image.open(img_path+img) for img in img_list if img.endswith(".jpg")]
