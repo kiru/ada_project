@@ -15,9 +15,9 @@ import urllib
 import requests
 from wordcloud import WordCloud
 import pickle
-from ipywidgets import interactive, IntSlider
+from ipywidgets import interact, IntSlider, fixed
 
-
+data_folder = "data/"
 
 nltk.download('stopwords')
 tokenizer = RegexpTokenizer(r'\w+')
@@ -259,7 +259,7 @@ def grey_color_func_darker(word, font_size, position,orientation,random_state=No
 
 
 # This function takes in your text and your mask and generates a wordcloud. 
-def generate_clipart(year):
+def generate_clipart(year, frequency_years):
     """
     :return: clipart wordcloud based on the most popular shape of the year
     """
@@ -297,14 +297,12 @@ def generate_clipart(year):
     plt.show()
 
 
-def show_wordcloud(year):
-    x, y = np.ogrid[:1000, :1000]
-    mask = (x - 150) ** 2 + (y - 150) ** 2 > 130 ** 2
-    mask = 255 * mask.astype(int)
-
-    wc = WordCloud(background_color="white", repeat=False, width=1000, height=1000, max_words=80)
-    wc.fit_words(frequency_years[year])
-    plt.figure(figsize=(12, 12))
-    plt.axis("off")
-    plt.imshow(wc, interpolation="bilinear")
-    plt.show()
+def get_data_for_wordclouds():
+    frequency_years_new = pickle.load(open(data_folder+'year_to_word_freq.pkl', 'rb'))
+    frequency_years = pickle.load(open(data_folder+'year_to_word_freq_new.pkl', 'rb'))
+    frequency_years.update(frequency_years_new)
+    drop_list = ['light', 'lights', 'sky', 'object', 'saw', 'like']
+    for year in range(1964, 2019):
+        for name in drop_list:
+            del frequency_years[year][name]
+    return frequency_years
