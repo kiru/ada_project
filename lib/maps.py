@@ -5,7 +5,7 @@ import pandas as pd
 data_folder = './geo_data/'
 my_USA_map = data_folder + r'us-states.json'
 
-population_folder = './data/
+population_folder = './data/'
 df_population = pd.read_excel(population_folder + 'PctUrbanRural_State.xls')
 df_population_all = pd.read_excel(population_folder+ 'PctUrbanRural_County.xls')
 
