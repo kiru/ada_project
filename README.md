@@ -25,8 +25,3 @@ For the base we are using a collection of UFO sightings from THE NATIONAL UFO RE
 * The NUFORC (National UFO Reporting Center) has been collecting UFO sightings since 1974. [Dataset](http://www.nuforc.org/webreports.html)
 
 
-# A list of internal milestones up until project milestone 2
-- Scrape NUFORC data from the website
-- Structurize the NUFORC data
-- Get some general ideas about the geo-distribution of the reports
-- Analyze the reporting for different words and visualize which words are most common
