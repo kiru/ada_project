@@ -117,7 +117,141 @@
             <h3 class="title">Are the reports explainable?</h3>
             <p>
                 Reading the above report gives you the impression, that these might be explainable with common sense,
-                like air craft or meteorite.
+                like air craft or meteorite or some sort of seasonal data. Thus we are looking deeper
+                into the possible explanations for reports in general.
+            </p>
+            <h2 class="title">Occurred and Reported</h3>
+            <p>
+                A reports submission splits into three parts, 'Occurred' when the UFO sighting was
+                noticed, 'Reported' when the sighting was reported to the NUFORC and 'Posted' when
+                the actual report was published online.
+
+                The report with the oldest occurrence time is from 1762 which is a report
+                from a London newspaper: http://www.nuforc.org/webreports/050/S50113.html
+
+               As pandas datetime deals with only years starting from 1900 and there
+                would be very little reliability with reports so old, we will be looking into reports only starting from 1900.
+
+                Our goal is to understand if we can explain the results through specific events,
+                 like rocket launches, seasonal weather analysis, etc.
+
+                Thus we show the amount of reports occuring  per each month over our time period.
+
+                #first plot
+            </p>
+            <p>
+              This plot shows the amount of reported occurances per month from 1900-2018.
+              We can see a very clear trend that during the summer months when is an increase in submitted reports.
+              This can be reasoned with very logicaly, because during warmer periods
+               people tend to spend more time outside, thus have a higher probability
+                of making a sighting of a UFO.
+
+              But we see a clear increase in July, thus we will be investigating
+               this month more, by plotting the reports from July over the time frame 1900 to 2018.
+               ## 2ND PLOT BIAAATCH
+            </p>
+            <p>
+              Now, here things start to become very interesting. We can quite obviously
+               see an increase for the 4th of July, as a lot of sightings might be connected with the fireworks in the US.
+
+              Though, another very clear increase is on the 15th of July, but after
+               a google query, no specific occurance in the month of July was found.
+                Thus, an investigation of the 15th of July over the years occurs.
+                What is more interesting, is that the increase on the 15th day of
+                 the month can be seen across multiple months.
+
+                 ## the figure of 12 plots
+            </p>
+            <p>
+              We can see a very clear trend across all months, that during
+               the 15th day of the month there is a sudden increase in occured
+                reportings of UFOs. Also, in most months there is a peak on the
+                 first day of the month and in some on the last one. And in some
+                  months there are also other peaks, which most of the time can
+                   be explained due to holidays, such as the 4th of July of
+                    New Years Eve, when fireworks are very prevalent.
+
+              To get a better understanding of the peaks that occur in the middle
+               of the month, we will plot the time between the Occurrence and
+                Reporting of the sighting over days of the month.
+
+                ##boxplotzzz
+            </p>
+            <p>
+              We see that we have some suspicious dates, where the mean is
+              higher than for the other ones, these days fall on 'round' numbers,
+               thus we propose that these dates are artificially inflated. In other
+                words, UFO reporters which submit their reports after a longer time
+                 will have a bias towards round dates, which has been shown in
+                  previous research as well. {ref: Huttenlocher (1990)}
+
+              To check this further we will do Kolmogorov-Smirnov test on these
+              dates to see if their empirical distribution matches the distribution
+               of the other dates.
+               From the test we got a p-value \<\0.05, thus we can reject the null
+               hypothesis, meaning, that they are not of the same distribution.
+               This further means, that reporters have a certain bias towards round
+                dates after a long time between the occurance of the sighting and
+                the reporting itself.
+            </p>
+          <h2 class="title">Other spikes</h3>
+            <p>
+
+              The previous analysis only covers spikes, which are create themselves
+               due to the bias of reporters. Thus, it is not an explanation per say
+               of the reports, but of the reason why they aggragate at these specific dates.
+
+              To look more in depth in special cases/other peaks, we are plotting
+               intensity of occurrence over the period 2004-2007 for all the months.
+
+               #interactive plot
+            </p>
+            <p>
+              After some manual searching for the peaks we found reasons for some
+              of them, while other were reported in the news as UFOs as well.
+
+              15th April 2004, Florida sightings connected with rocket launch
+               https://en.wikipedia.org/wiki/List_of_Atlas_launches_(2000%E2%80%932009)
+
+              26th June 2004, space debris entering atmosphere
+
+              21st august 2004 and 31st october 2004, 30th September 2005,
+               https://www.youtube.com/watch?v=UE_hpI5K8fY, almost all reports over the same time, in the same location https://en.wikipedia.org/wiki/Black_triangle_(UFO)
+
+              31st August 2004, the missile launch
+               https://www.space.com/299-mystery-cloud-appears-eastern-canada.html
+
+              29th of April 2005, titan IV misile launch https://en.wikipedia.org/wiki/Titan_IV
+
+              15th of May 2005, reports from all over the place, reports
+               mention different shapes and sizes, no seemind connection with
+                weather or anything else.
+
+              29th April 2006, a lot of reports from Portaland, Oregon, reports
+              describe similar to that of this https://en.wikipedia.org/wiki/Black_triangle_(UFO)
+
+              1st of October 2006, reports from Colorado and New Mexico, no
+               seeming correlation to meteorite showers or weather.
+
+              28th of November 2006, often described as fireball, possible
+               explanation meteor event https://www.amsmeteors.org/members/imo_view/event/2006/448
+
+              16th of December 2006, possible explanation: meteor
+               event https://www.amsmeteors.org/members/imo_view/event/2006/492
+
+              19-20th of June 2007, possible explanation, ISS docking of a
+               cargo ship https://twitter.com/shuttlealmanac/status/744654510778245121
+
+              12th of August 2007, meteor shower at the time http://m.esa.int/Our_Activities/Space_Science/First_glimpses_from_the_Perseid_meteor_shower, though a lot of reports mention that they saw UFO within the meteor shower.
+
+              12th of December 2007, Atlas rocket fuel dump https://britastro.org/node/5886
+            </p>
+            <p>
+              By manually checking the days of the peaks we could find
+              reasonable explanations for most of them, such as rocket launches,
+               space station fueling missions, meteorites, etc. But at the same time
+                some peaks didn't leave any seeming correlation with events that
+                 could be explainable from earth/space weather or known human made flyers.
             </p>
         </div>
     </div>
