@@ -136,7 +136,7 @@ def build_report_dataframe(list_of_report_urls):
 
     df_reports = pd.DataFrame()
     
-    with Pool(500) as pool:
+    with Pool(16) as pool:
 
         for each in tqdm_notebook(pool.imap(request_one_report, list_of_report_urls),
                                   total=len(list_of_report_urls)):
