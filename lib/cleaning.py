@@ -6,9 +6,6 @@ import matplotlib.pyplot as plt
 
 pd.options.mode.chained_assignment = None  # default='warn'
 
-#regex_cut_nuforc = r"\(\(NUFORC Note.[^\)]*\)\)"
-#regex_cut_url = r"(https|http|www)(:\/\/|)([^\s )(]*)"
-
 
 # return summary without any nuforc notes
 def delete_Nuforc_from_sum(summary, nuforc_note):
