@@ -120,7 +120,7 @@
 
     <div class="row">
         <div class="col">
-            If you got the tast of UFO reports, try to read some of more <a
+            Read some more <a
                 href="http://www.nuforc.org/webreports.html">here</a>.
         </div>
     </div>
@@ -137,14 +137,10 @@
         </div>
     </div>
 
-
     <div class="row" style="height=100px">
 
         <div class="col">
-
-
             <script type="text/javascript" src="plotlyjs-bundle.js"></script>
-
 
             <script type="text/javascript" src="figure.js"></script>
 
@@ -193,11 +189,8 @@
 
 
         <div class="col">
-            <p>The previous analysis only covers spikes, which are create themselves due to the bias of reporters. Thus,
-                it is not an explanation per say of the reports, but of the reason why they aggragate at these specific
-                dates.</p>
             <p> To look more in depth in special cases/other peaks, we are plotting intensity of occurrence over the
-                period 2004-2007 for all the months. #interactive plot </p>
+                period 2004-2007 for all the months.</p>
 
             <p> After some manual searching for the peaks we found reasons for some
                 of them, while other were reported in the news as UFOs as well.
@@ -268,8 +261,10 @@
             </p>
             <p>By manually checking the days of the peaks we could find reasonable explanations for most of
                 them, such as rocket launches, space station fueling missions, meteorites, etc. But at the same
-                time some peaks didn't leave any seeming correlation with events that could be explainable from
-                earth/space weather or known human made flyers. </p>
+                time some peaks didn't leave any seeming correlation with events that could be explainable from earth/space weather or known human made flying objects. </p>
+            <p>
+                For a more detailed analysis check out the <a href="UFO.html">full notebook.</a>
+            </p>
         </div>
     </div>
 
@@ -279,24 +274,22 @@
                 Sentiment anlylsis
             </h3>
             <p>For sentiment analysis we are looking into what types of emotions and
-              proceses can be apprehended from the reports. Though to understand that
-              we must look into the distribution of the reports in general. Meaning,
-              what is the distribution of word count within the reports.</p>
-                <p><img src="img/wordcount.png" alt="" class="img-fluid"></p>
-              <p>We can clearly see that the word count follows a normal distribution with
-              a mean shift to the left</p>
-              <p>To see what kind of emotions are more prevalent within in the reportings,
+                proceses can be apprehended from the reports. The following chart show the distributions of the word counts. </p>
+            <p><img src="img/wordcount.png" alt="" class="img-fluid"></p>
+            <p>We can clearly see that the word count follows a normal distribution with
+                a mean shift to the left</p>
+            <p>To see what kind of emotions are more prevalent within in the reportings,
                 we are further looking into the percentages of emotions/perceptions found
                 within the reports.</p>
-                <p><img src="img/boxplot_emotion.png" alt="" class="img_fluid"></p>
-              <p>We can see that both positive and negative emotions are rather commonly
+            <p><img src="img/boxplot_emotion.png" alt="" class="img-fluid"></p>
+            <p>We can see that both positive and negative emotions are rather commonly
                 found in the reports, as well as 'tentative' and 'certain' cognitive processes.
                 Which is why we are looking into these emotions together with the senses of 'hear'
                 and 'feel' and how are they showed for the most popular shapes.</p>
-                <p><img src="img/nets_emo.png" alt="" class="img_fluid"></p>
-              <p>Even if the nets seem to be conveying interesting information, we cannot
+            <p><img src="img/nets_emo.png" alt="" class="img-fluid"></p>
+            <p>Even if the nets seem to be conveying interesting information, we cannot
                 infer any meaningful differences from the most popular shapes.
-              </p>
+            </p>
         </div>
     </div>
 
