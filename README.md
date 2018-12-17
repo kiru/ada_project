@@ -1,7 +1,8 @@
 # UFO believer or not
 
-# Datastory
-Go to [https://ada-nuforc-analysis.github.io/](https://ada-nuforc-analysis.github.io/)
+# Milestone 3
+[Notebook](https://github.com/kiru/ada_project/blob/master/UFO.ipynb)
+[Data story](https://ada-nuforc-analysis.github.io/)
 
 # Abstract
 
