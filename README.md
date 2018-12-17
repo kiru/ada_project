@@ -25,4 +25,7 @@ For the base we are using a collection of UFO sightings from THE NATIONAL UFO RE
 # Dataset
 * The NUFORC (National UFO Reporting Center) has been collecting UFO sightings since 1974. [Dataset](http://www.nuforc.org/webreports.html)
 
-
+# Contributions
+Jurgis Ruza: Sentiment analysis, Cleaning, Time analysis
+Josef Weber: Maps, Image scraping, Cleaning
+Kirusanth Poopalasingam: Web page, Data scraping
